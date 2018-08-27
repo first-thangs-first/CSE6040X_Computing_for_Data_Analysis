@@ -68,18 +68,10 @@ def item_mean(grades):
     """Return dict of mapping item to average of item for all students from grades of result of asdicts
     """
     result = {}
-    exams1 = []
-    exams2 = []
-    exams3 = []
-    for name, gradeDict in grades.items():
-        for exam, grade in gradeDict.items():
-            if exam == 'Exam 1':
-                exams1.append(grade)
-            elif exam == 'Exam 2':
-                exams2.append(grade)
-            elif exam == 'Exam 3':
-                exams3.append(grade)
-    result['Exam 1'] = sum([int(g) for g in exams1]) / len(exams1)
-    result['Exam 2'] = sum([int(g) for g in exams2]) / len(exams2)
-    result['Exam 3'] = sum([int(g) for g in exams3]) / len(exams3)
+    exams1 = [int(gradeDict['Exam 1']) for _, gradeDict in grades.items()]
+    exams2 = [int(gradeDict['Exam 2']) for _, gradeDict in grades.items()]
+    exams3 = [int(gradeDict['Exam 3']) for _, gradeDict in grades.items()]
+    result['Exam 1'] = sum(exams1) / len(exams1)
+    result['Exam 2'] = sum(exams2) / len(exams2)
+    result['Exam 3'] = sum(exams3) / len(exams3)
     return result
