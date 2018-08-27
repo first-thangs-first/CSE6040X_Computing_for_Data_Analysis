@@ -14,6 +14,7 @@ def in2m(inches):
     METER_IN_INCHES = 39.3701
     return inches / METER_IN_INCHES
 
+
 def lb2kg(pounds):
     """Convert pounds to kilograms according to convsersion rule 1kg == 2.2lb
 
@@ -26,6 +27,7 @@ def lb2kg(pounds):
     """
     KG_IN_LBS = 2.2
     return pounds / KG_IN_LBS
+
 
 def bmi(weight, height):
     """Calculate body mass index (BMI) for given weight and height.
@@ -42,6 +44,7 @@ def bmi(weight, height):
     True
     """
     return weight / (height ** 2)
+
 
 def is_overwieght(weight, height):
     """Answer whether the given weight and height is considered overweight
@@ -62,6 +65,7 @@ def is_overwieght(weight, height):
     """
     return bmi(weight, height) > 25.0
 
+
 def is_underweight(weight, height):
     """Answer whether the given weight and height is considered underweight
     by government standards (BMI < 18.5).
@@ -80,3 +84,94 @@ def is_underweight(weight, height):
     False
     """
     return bmi(weight, height) < 18.5
+
+
+def split(text, delim=","):
+    """Return a list of fields in text separated by delim.
+
+    Parameters:
+    text: str -- the string to split into fields
+
+    Return:
+    list[str]
+
+    Usage examples:
+    >>> split("foo, bar, baz")
+    ['foo', ' bar', ' baz']
+    """
+    return text.split(delim)
+
+
+def zip(xs, ys):
+    """Return [(x0, y0), ..., (xn, yn)] where n is 1 - min(len(xs), len(ys))
+
+    Parameters:
+    xs: Sequence -- the "left" list
+    ys: Sequence -- the "right list
+
+    Return:
+    list[tuple]
+
+    Usage examples:
+    >>> zip(['a', 'b', 'c', 'd'], [1,2,3])
+    [('a', 1), ('b', 2), ('c', 3)]
+    """
+    return [(xs[index], ys[index]) for index in range(min(len(xs), len(ys)))]
+
+
+def zip_with_indexes(xs):
+    """Return [(0, x0), ..., (n, xn)] where n is 1 - len(xs)
+
+    Parameters:
+    xs: Sequence -- a sequence
+
+    Return:
+    list[tuple]
+
+    Usage examples:
+    >>> zip_with_indexes(['a', 'b', 'c', 'd'])
+    [(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd')]
+    """
+    return [(index, xs[index]) for index in range(len(xs))]
+
+
+def lookup_key(v, d):
+    """Return a key in dict d which maps to v, or None if v isn't present
+
+    Parameters:
+    v: Any -- a value which may be in dictionary d
+    d, : dict -- a dictionary which may contain the value v
+
+    Return:
+    Any
+
+    Usage examples:
+    >>> lookup_key(1, {'a': 1, 1: 'b', 'c': 2})
+    'a'
+    """
+    result = None
+    for key, value in d.items():
+        if value == v:
+            result = key
+    return result
+
+
+def lookup_keys(v, d):
+    """Return list of keys in dict d which map to value
+
+    Parameters:
+    v: Any -- a value which may be in dictionary d
+    d, : dict -- a dictionary which may contain the value v
+
+    Return:
+    list[Any]
+
+    Usage examples:
+    >>> lookup_keys(1, {'a': 1, 1: 'b', 'c': 2, 'd': 1})
+    ['a', 'd']
+    """
+    result = []
+    for key, value in d.items():
+        if value == v:
+            result.append(key)
+    return result
