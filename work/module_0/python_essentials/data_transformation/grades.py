@@ -64,6 +64,7 @@ def stud_means(grades):
     # return result
     return {key: (sum([int(v) for v in values]) / len(values)) for key, values in grades.items()}
 
+
 def item_mean(grades):
     """Return dict of mapping item to average of item for all students from grades of result of asdicts
     """
